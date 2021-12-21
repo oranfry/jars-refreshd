@@ -1,0 +1,12 @@
+[Unit]
+Description = Jars Refresh daemon
+
+[Service]
+Type = simple
+ExecStart = /var/www/jars/plugins/refreshd/jars-refresh.sh start
+Restart = on-failure
+User = oran
+WorkingDirectory = /var/www/jars/plugins/refreshd
+
+[Install]
+WantedBy = multi-user.target
