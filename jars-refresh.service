@@ -3,10 +3,10 @@ Description = Jars Refresh daemon
 
 [Service]
 Type = simple
-ExecStart = /var/www/jars/plugins/refreshd/jars-refresh.sh start
+ExecStart = /var/www/jars/plugins/jars-refreshd/jars-refresh.sh start
 Restart = on-failure
 User = www-data
-WorkingDirectory = /var/www/jars/plugins/refreshd
+WorkingDirectory = /var/www/jars/plugins/jars-refreshd
 
 [Install]
 WantedBy = multi-user.target
