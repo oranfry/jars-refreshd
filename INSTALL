@@ -1,0 +1,23 @@
+To install:
+
+$ cd /var/www/jars
+
+The above path could be anywhere, but this is standard place
+
+$ git clone jars-refresh.git
+$ cd jars-refresh
+$ mkdir conf.d
+$ vim conf.d/myportal.conf
+
+Add these contents:
+
+AUTH_TOKEN=AAAAAAAAAA:0000000000000000000000000000000000000000000000000000000000000000
+DB_HOME=/var/www/jars/db/kmca
+PORTAL_HOME=/var/www/jars/portals/myportal
+
+$ sudo cp jars-refresh.service /etc/systemd/system/jars-refresh.service
+
+Now edit /etc/systemd/system/jars-refresh.service for your system (paths, user, etc.)
+
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable jars-refresh

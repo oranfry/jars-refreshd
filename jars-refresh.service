@@ -5,7 +5,7 @@ Description = Jars Refresh daemon
 Type = simple
 ExecStart = /var/www/jars/plugins/refreshd/jars-refresh.sh start
 Restart = on-failure
-User = oran
+User = www-data
 WorkingDirectory = /var/www/jars/plugins/refreshd
 
 [Install]
