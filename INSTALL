@@ -1,5 +1,6 @@
 To install:
 
+$ sudo apt install inotify-tools
 $ cd /var/www/jars
 
 The above path could be anywhere, but this is standard place
