@@ -18,7 +18,7 @@ for key in ${!WATCH_FILES[@]}; do
 done
 
 for key in ${!PORTAL_HOMES[@]}; do
-    refresh_portal ${PORTAL_HOMES[$key]} ${AUTH_TOKENS[$key]}
+    refresh_portal ${NAMES[$key]}
 done
 
 rm -rf /tmp/jars-refreshd.fifo
@@ -31,14 +31,13 @@ while true; do
     while read f e; do
         for key in ${!WATCH_FILES[@]}; do
             if [ "${WATCH_FILES[$key]}" == "$f" ]; then
+                NAME="${NAMES[$key]}"
                 DB_HOME="${DB_HOMES[$key]}"
                 PORTAL_HOME="${PORTAL_HOMES[$key]}"
                 AUTH_TOKEN="${AUTH_TOKENS[$key]}"
                 WATCH_FILE="${WATCH_FILES[$key]}"
             fi
         done
-
-        CMD="$PORTAL_HOME/cli.php refresh -t $AUTH_TOKEN"
 
         if [ "$e" == "DELETE_SELF" ]; then
             kill $PID
@@ -47,10 +46,10 @@ while true; do
                 sleep 1
             done
 
-            refresh_portal $PORTAL_HOME $AUTH_TOKEN
+            refresh_portal $NAME
             break
         fi
 
-        refresh_portal $PORTAL_HOME $AUTH_TOKEN
+        refresh_portal $NAME
     done < /tmp/jars-refreshd.fifo
 done

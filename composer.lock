@@ -1,0 +1,103 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "fafab70ddd3edc9fdf544ff8a998be7c",
+    "packages": [
+        {
+            "name": "oranfry/jars-contracts",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oranfry/jars-contracts.git",
+                "reference": "0be52f044d21554daeb703d3dfd5999f7b29545e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oranfry/jars-contracts/zipball/0be52f044d21554daeb703d3dfd5999f7b29545e",
+                "reference": "0be52f044d21554daeb703d3dfd5999f7b29545e",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "jars\\contract\\": "classes"
+                }
+            },
+            "support": {
+                "source": "https://github.com/oranfry/jars-contracts/tree/master",
+                "issues": "https://github.com/oranfry/jars-contracts/issues"
+            },
+            "time": "2022-02-12T11:47:59+00:00"
+        },
+        {
+            "name": "oranfry/jars-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oranfry/jars-core.git",
+                "reference": "a54e0ea69e0a6fd694f4662dcc1cc984ecdf5ff3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oranfry/jars-core/zipball/a54e0ea69e0a6fd694f4662dcc1cc984ecdf5ff3",
+                "reference": "a54e0ea69e0a6fd694f4662dcc1cc984ecdf5ff3",
+                "shasum": ""
+            },
+            "require": {
+                "oranfry/jars-contracts": "*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "jars\\": "classes"
+                }
+            },
+            "support": {
+                "source": "https://github.com/oranfry/jars-core/tree/master",
+                "issues": "https://github.com/oranfry/jars-core/issues"
+            },
+            "time": "2022-02-12T11:39:51+00:00"
+        },
+        {
+            "name": "oranfry/subsimple",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oranfry/subsimple.git",
+                "reference": "bd11b0941acb7423fe861f62a757602599c207a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oranfry/subsimple/zipball/bd11b0941acb7423fe861f62a757602599c207a6",
+                "reference": "bd11b0941acb7423fe861f62a757602599c207a6",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "subsimple\\": "classes"
+                }
+            },
+            "support": {
+                "source": "https://github.com/oranfry/subsimple/tree/master",
+                "issues": "https://github.com/oranfry/subsimple/issues"
+            },
+            "time": "2022-02-12T02:42:03+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}

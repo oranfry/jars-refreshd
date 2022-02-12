@@ -1,5 +1,7 @@
 
 function load_portal {
+    NAME="$(basename "$(echo "$1" | sed 's/.conf$//')")"
+
     source "$1"
 
     if [ -z "$DB_HOME" ]; then
@@ -38,11 +40,13 @@ function load_portal {
         exit
     fi
 
+    NAMES+=($NAME)
     DB_HOMES+=($DB_HOME)
     AUTH_TOKENS+=($AUTH_TOKEN)
     PORTAL_HOMES+=($PORTAL_HOME)
     WATCH_FILES+=("$WATCH_FILE")
 
+    NAME=
     DB_HOME=
     PORTAL_HOME=
     AUTH_TOKEN=
@@ -51,8 +55,5 @@ function load_portal {
 
 
 function refresh_portal {
-    PORTAL_HOME="$1"
-    AUTH_TOKEN="$2"
-
-    "$PORTAL_HOME/cli.php" refresh -t $AUTH_TOKEN
+    "$dir/refresh.php" $1
 }

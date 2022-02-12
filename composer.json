@@ -1,0 +1,28 @@
+{
+    "name": "oranfry/jars-refreshd",
+    "version": "1.0.0",
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:oranfry/jars-contracts.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:oranfry/jars-core.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:oranfry/subsimple.git"
+        }
+    ],
+    "require": {
+        "oranfry/jars-core": "*",
+        "oranfry/subsimple": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "jars\\refresh\\": "classes"
+        }
+    }
+}
