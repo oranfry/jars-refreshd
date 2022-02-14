@@ -114,7 +114,7 @@ if ($greyhound) {
     }
 }
 
-foreach (array_keys($jars->config($jars->token())->reports) as $report_name) {
+foreach (array_keys($jars->config()->reports) as $report_name) {
     $report = $jars->report($report_name);
 
     foreach ($changes as $id => $change) {
