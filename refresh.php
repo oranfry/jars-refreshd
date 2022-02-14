@@ -9,33 +9,41 @@ require __DIR__ . '/lib.php';
 
 $command = array_shift($argv);
 $confname = @array_shift($argv);
-
-if (!$confname) {
-    error_log('Please specify config name as first argument');
-    die(1);
-}
-
-if (!file_exists($config_file = __DIR__ . '/conf.d/' . $confname . '.conf')) {
-    error_log('Config file missing for portal "' . $confname . '" (' . $config_file . ')');
-    die(1);
-}
-
 $expect = ['PORTAL_HOME', 'DB_HOME', 'AUTH_TOKEN'];
 $found = [];
 
-foreach (explode("\n", file_get_contents($config_file)) as $i => $line) {
-    if (preg_match('/^\s*([A-Z_]+)\s*=(.*)/', $line, $matches)) {
-        if (!in_array($option = $matches[1], $expect)) {
-            error_log('Unrecognised option in config: ' . $option);
+foreach ($expect as $i => $option) {
+    if ($value = @$_SERVER[$option]) {
+        define($option, $value);
+        $found[] = $option;
+    }
+}
+
+if (count($expect) > count($found)) {
+    if (!$confname) {
+        error_log('Please specify config name as first argument or specify all config options in environment variables');
+        die(1);
+    }
+
+    if (!file_exists($config_file = __DIR__ . '/conf.d/' . $confname . '.conf')) {
+        error_log('Config file missing for portal "' . $confname . '" (' . $config_file . ')');
+        die(1);
+    }
+
+    foreach (explode("\n", file_get_contents($config_file)) as $i => $line) {
+        if (preg_match('/^\s*([A-Z_]+)\s*=(.*)/', $line, $matches)) {
+            if (!in_array($option = $matches[1], $expect)) {
+                error_log('Unrecognised option in config: ' . $option);
+                die(1);
+            }
+
+            $found[] = $option;
+
+            define($option, trim($matches[2]));
+        } elseif (!preg_match('/^\s*(#.*)?$/', $line, $matches)) {
+            error_log('Invalid config on line ' . $i);
             die(1);
         }
-
-        $found[] = $option;
-
-        define($option, trim($matches[2]));
-    } elseif (!preg_match('/^\s*(#.*)?$/', $line, $matches)) {
-        error_log('Invalid config on line ' . $i);
-        die(1);
     }
 }
 
@@ -68,8 +76,9 @@ if (file_exists($greyhound_file = REPORTS_DIR . "/version.dat")) {
 }
 
 if ($bunny == $greyhound) {
-    // echo $greyhound . "\n";
-    return ['version' => $greyhound];
+    echo $greyhound . "\n";
+
+    return;
 }
 
 if ($bunny_number > $greyhound_number) {
@@ -200,5 +209,4 @@ $past_dir = DB_HOME . '/past';
 
 file_put_contents($greyhound_file, $bunny); // the greyhound has caught the bunny!
 
-// echo $bunny . "\n";
-return ['version' => $bunny];
+echo $bunny . "\n";
