@@ -10,15 +10,10 @@
         {
             "type": "vcs",
             "url": "git@github.com:oranfry\/jars-core.git"
-        },
-        {
-            "type": "vcs",
-            "url": "git@github.com:oranfry\/subsimple.git"
         }
     ],
     "require": {
-        "oranfry\/jars-core": "*",
-        "oranfry\/subsimple": "*"
+        "oranfry\/jars-core": "*"
     },
     "autoload": {
         "psr-4": {

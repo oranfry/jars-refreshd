@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fafab70ddd3edc9fdf544ff8a998be7c",
+    "content-hash": "67850841a065d19995fd398b1c95e1e2",
     "packages": [
         {
             "name": "oranfry/jars-contracts",
@@ -39,12 +39,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/oranfry/jars-core.git",
-                "reference": "3abcdec1a714578a61bcd1cc25c0f1fce90b0fba"
+                "reference": "5f74d603456eabae885e5fe9547917af51f748a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oranfry/jars-core/zipball/3abcdec1a714578a61bcd1cc25c0f1fce90b0fba",
-                "reference": "3abcdec1a714578a61bcd1cc25c0f1fce90b0fba",
+                "url": "https://api.github.com/repos/oranfry/jars-core/zipball/5f74d603456eabae885e5fe9547917af51f748a9",
+                "reference": "5f74d603456eabae885e5fe9547917af51f748a9",
                 "shasum": ""
             },
             "require": {
@@ -61,34 +61,7 @@
                 "source": "https://github.com/oranfry/jars-core/tree/master",
                 "issues": "https://github.com/oranfry/jars-core/issues"
             },
-            "time": "2022-02-14T11:14:09+00:00"
-        },
-        {
-            "name": "oranfry/subsimple",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/oranfry/subsimple.git",
-                "reference": "bd11b0941acb7423fe861f62a757602599c207a6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/oranfry/subsimple/zipball/bd11b0941acb7423fe861f62a757602599c207a6",
-                "reference": "bd11b0941acb7423fe861f62a757602599c207a6",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "subsimple\\": "classes"
-                }
-            },
-            "support": {
-                "source": "https://github.com/oranfry/subsimple/tree/master",
-                "issues": "https://github.com/oranfry/subsimple/issues"
-            },
-            "time": "2022-02-12T02:42:03+00:00"
+            "time": "2022-02-17T08:33:41+00:00"
         }
     ],
     "packages-dev": [],
