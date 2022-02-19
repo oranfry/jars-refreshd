@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/oranfry/jars-contracts.git",
-                "reference": "85365548d6e4dfd1b6a8f391c8f440eef14c2630"
+                "reference": "2aa8edf31e1c45b6c0c79929c854f9188c5138d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oranfry/jars-contracts/zipball/85365548d6e4dfd1b6a8f391c8f440eef14c2630",
-                "reference": "85365548d6e4dfd1b6a8f391c8f440eef14c2630",
+                "url": "https://api.github.com/repos/oranfry/jars-contracts/zipball/2aa8edf31e1c45b6c0c79929c854f9188c5138d7",
+                "reference": "2aa8edf31e1c45b6c0c79929c854f9188c5138d7",
                 "shasum": ""
             },
             "default-branch": true,
@@ -31,7 +31,7 @@
                 "source": "https://github.com/oranfry/jars-contracts/tree/master",
                 "issues": "https://github.com/oranfry/jars-contracts/issues"
             },
-            "time": "2022-02-17T08:47:27+00:00"
+            "time": "2022-02-19T04:35:54+00:00"
         },
         {
             "name": "oranfry/jars-core",
@@ -39,12 +39,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/oranfry/jars-core.git",
-                "reference": "5f74d603456eabae885e5fe9547917af51f748a9"
+                "reference": "14f4f04dc60579fb51ba8cf36a44efb1405adc55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oranfry/jars-core/zipball/5f74d603456eabae885e5fe9547917af51f748a9",
-                "reference": "5f74d603456eabae885e5fe9547917af51f748a9",
+                "url": "https://api.github.com/repos/oranfry/jars-core/zipball/14f4f04dc60579fb51ba8cf36a44efb1405adc55",
+                "reference": "14f4f04dc60579fb51ba8cf36a44efb1405adc55",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                 "source": "https://github.com/oranfry/jars-core/tree/master",
                 "issues": "https://github.com/oranfry/jars-core/issues"
             },
-            "time": "2022-02-17T08:33:41+00:00"
+            "time": "2022-02-19T09:45:14+00:00"
         }
     ],
     "packages-dev": [],
