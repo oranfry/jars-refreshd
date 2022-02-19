@@ -5,11 +5,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:oranfry\/jars-contracts.git"
+            "url": "https:\/\/github.com\/oranfry\/jars-contracts.git"
         },
         {
             "type": "vcs",
-            "url": "git@github.com:oranfry\/jars-core.git"
+            "url": "https:\/\/github.com\/oranfry\/jars-core.git"
         }
     ],
     "require": {
