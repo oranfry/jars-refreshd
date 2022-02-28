@@ -3,6 +3,7 @@ function load_portal {
     NAME="$(basename "$(echo "$1" | sed 's/.conf$//')")"
 
     source "$1"
+    source "global.conf"
 
     if [ -z "$DB_HOME" ]; then
         echo "No DB_HOME set in $1"
@@ -40,20 +41,21 @@ function load_portal {
         exit
     fi
 
-    NAMES+=($NAME)
-    DB_HOMES+=($DB_HOME)
     AUTH_TOKENS+=($AUTH_TOKEN)
-    PORTAL_HOMES+=($PORTAL_HOME)
+    BIN_HOMES+=("$BIN_HOME")
+    DB_HOMES+=("$DB_HOME")
+    NAMES+=($NAME)
+    PORTAL_HOMES+=("$PORTAL_HOME")
     WATCH_FILES+=("$WATCH_FILE")
 
-    NAME=
-    DB_HOME=
-    PORTAL_HOME=
     AUTH_TOKEN=
+    BIN_HOME=
+    DB_HOME=
+    NAME=
+    PORTAL_HOME=
     WATCH_FILE=
 }
 
-
 function refresh_portal {
-    "$dir/refresh.php" $1
+    "$BIN_HOME/jars-refresh" $1
 }

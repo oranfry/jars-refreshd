@@ -1,9 +1,11 @@
 #!/bin/bash
 
+dir="$(dirname "$0")"
+
 function d_start
 {
     echo  "Jars Refresh: starting service"
-    ./jars-refreshd.sh
+    "$dir/jars-refreshd.sh"
     echo $! > /tmp/jars-refresh.pid
     echo  "PID: $(cat /tmp/jars-refresh.pid)"
 }
