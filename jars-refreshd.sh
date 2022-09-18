@@ -14,7 +14,11 @@ for conf_file in conf.d/*.conf; do
 done
 
 for key in ${!WATCH_FILES[@]}; do
-    FILE_ARGS="$FILE_ARGS-m ${WATCH_FILES[$key]} "
+    if [[ "$OSTYPE" =~ ^darwin ]]; then
+        FILE_ARGS="$FILE_ARGS ${WATCH_FILES[$key]} "
+    else
+        FILE_ARGS="$FILE_ARGS-m ${WATCH_FILES[$key]} "
+    fi
 done
 
 for key in ${!PORTAL_HOMES[@]}; do
@@ -28,7 +32,12 @@ rm -rf /tmp/jars-refreshd.fifo
 mkfifo /tmp/jars-refreshd.fifo
 
 while true; do
-    inotifywait -e CLOSE_WRITE,DELETE_SELF $FILE_ARGS > /tmp/jars-refreshd.fifo 2>/dev/null &
+    if [[ "$OSTYPE" =~ ^darwin ]]; then
+        fswatch $FILE_ARGS > /tmp/jars-refreshd.fifo 2>/dev/null &
+    else
+        inotifywait -e CLOSE_WRITE,DELETE_SELF $FILE_ARGS > /tmp/jars-refreshd.fifo 2>/dev/null &
+    fi
+
     PID=$!
 
     while read f e; do
@@ -43,7 +52,7 @@ while true; do
             fi
         done
 
-        if [ "$e" == "DELETE_SELF" ]; then
+        if [[ "$OSTYPE" =~ ^darwin ]] && [[ "$e" =~ Renamed ]] || [ "$e" == "DELETE_SELF" ] ; then
             kill $PID
 
             while [ ! -e "$WATCH_FILE" ]; do
