@@ -36,8 +36,10 @@ function load_portal {
 
     WATCH_FILE="$DB_HOME/touch.dat"
 
+    touch "$WATCH_FILE"
+
     if [ ! -e "$WATCH_FILE" ]; then
-        echo "Watch file $WATCH_FILE does not exist"
+        echo "Watch file $WATCH_FILE does not exist, and could not be created"
         exit
     fi
 
