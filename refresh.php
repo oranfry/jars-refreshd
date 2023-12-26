@@ -1,62 +1,85 @@
 <?php
 
-use jars\Jars;
+use jars\contract\JarsConnector;
 
-const EXPECT = ['PORTAL_HOME', 'DB_HOME', 'AUTH_TOKEN', 'BIN_HOME'];
+const REQUIRED = ['CONNECTION_STRING', 'AUTH_TOKEN', 'BIN_HOME'];
+const OPTIONAL = ['PORTAL_AUTOLOAD'];
 
 $command = array_shift($argv);
+
+$etc = '/etc';
+$etc_arg = null;
+
+foreach ($argv as $i => $value) {
+    if (preg_match('/^--etc-dir=(.*)/', $value, $matches)) {
+        $etc = $matches[1];
+        $etc_arg = ' ' . $value;
+        unset($argv[$i]);
+    }
+}
+
 $confname = @array_shift($argv);
-$found = [];
+$config = [];
 
-foreach (EXPECT as $i => $option) {
-    if ($value = @$_SERVER[$option]) {
-        define($option, $value);
-        $found[] = $option;
+if ($confname) {
+    $command = __DIR__ . '/read-portal.php' . $etc_arg . ' ' . $confname;
+
+    $config += load_conf(`$command` ?? '');
+    $config += load_conf_file('refresh/conf.d/' . $confname . '.conf');
+}
+
+$config += load_conf_file('refresh/global.conf');
+
+foreach (array_merge(REQUIRED, OPTIONAL) as $i => $option) {
+    if ($value = $_SERVER[$option] ?? null) {
+        $config[$option] = $value;
     }
 }
 
-if (count(EXPECT) > count($found) && file_exists($config_file = 'global.conf')) {
-    load_conf_file($config_file, $found);
-}
+$missing = array_filter(REQUIRED, fn ($option) => !array_key_exists($option, $config));
 
-if (count(EXPECT) > count($found)) {
-    if (!$confname) {
-        error_log('Please specify config name as first argument or specify all config options in environment variables or global config');
-        die(1);
-    }
-
-    if (!file_exists($config_file = 'conf.d/' . $confname . '.conf')) {
-        error_log('Config file missing for portal "' . $confname . '" (' . $config_file . ')');
-        die(1);
-    }
-
-    load_conf_file($config_file, $found);
-}
-
-if (count($missing = array_filter(EXPECT, fn ($option) => !in_array($option, $found)))) {
+if (count($missing)) {
     error_log('Missing config options: ' . implode(', ', $missing));
     die(1);
 }
 
-$jars = Jars::of(PORTAL_HOME, DB_HOME);
-$jars->token(AUTH_TOKEN);
+if ($autoload = $config['PORTAL_AUTOLOAD'] ?? null) {
+    require $autoload;
+}
+
+$jars = JarsConnector::connect($config['CONNECTION_STRING']);
+$jars->token($config['AUTH_TOKEN']);
 $jars->refresh();
 
-function load_conf_file($config_file, &$found)
+function load_conf_file(string $config_file): array
 {
-    foreach (explode("\n", file_get_contents($config_file)) as $i => $line) {
+    // echo $config_file . '? ' . (is_file($config_file) ? 'Yes' : 'No') . "\n";
+
+    if (!is_file($config_file)) {
+        return [];
+    }
+
+    return load_conf(file_get_contents($config_file));
+}
+
+function load_conf(string $raw_config): array
+{
+    $loaded = [];
+
+    foreach (explode("\n", $raw_config) as $i => $line) {
         if (preg_match('/^\s*([A-Z_]+)\s*=(.*)/', $line, $matches)) {
-            if (!in_array($option = $matches[1], EXPECT)) {
-                error_log('Unrecognised config option in [' . $config_file . ']: ' . $option);
+            if (!in_array($option = $matches[1], array_merge(REQUIRED, OPTIONAL))) {
+                error_log('Unrecognised config option: ' . $option);
                 die(1);
             }
 
-            $found[] = $option;
-
-            define($option, trim($matches[2]));
-        } elseif (!preg_match('/^\s*(#.*)?$/', $line, $matches)) {
+            $loaded[$option] = trim($matches[2]);
+            // echo '>> ' . $option . ' = ' . $loaded[$option] . "\n";
+        } elseif (!preg_match('/^\s*(?:#.*)?$/', $line)) {
             error_log('Invalid config line in [' . $config_file . '] on line [' . $i . ']');
             die(1);
         }
     }
+
+    return $loaded;
 }

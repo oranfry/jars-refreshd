@@ -1,14 +1,16 @@
 To install:
 
 $ sudo apt install inotify-tools
-$ mkdir -p /etc/jars-refresh/conf.d
-$ vim /etc/jars-refresh/global.conf             # add these contents:
+$ mkdir -p /etc/jars/refresh/conf.d
+$ vim /etc/jars/refresh/global.conf             # add these contents:
 BIN_HOME=/path/to/jars/bin
 
-$ vim /etc/jars-refresh/conf.d/myportal.conf    # add these contents:
-AUTH_TOKEN=AAAAAAAAAA:0000000000000000000000000000000000000000000000000000000000000000
-DB_HOME=/path/to/db
-PORTAL_HOME=/path/to/portal
+$ vim /etc/jars/refresh/conf.d/myportal.conf    # add these contents:
+AUTH_TOKEN={a valid, long-lived token}
+
+Note: If you are not defining portals using /etc/jars/*.json, you must also
+      specify PORTAL_AUTOLOAD and CONNECTION_STRING in the file
+      /etc/jars/refresh/conf.d/myportal.conf.
 
 $ cd /usr/local                         # could be anywhere you like
 $ git clone jars-refresh.git

@@ -4,12 +4,12 @@ dir="$(dirname "$0")"
 
 source "$dir/functions.sh"
 
-if [ "conf.d/*.conf" == "conf.d/\\*.conf" ]; then
+if [ "refresh/conf.d/*.conf" == "refresh/conf.d/\\*.conf" ]; then
     echo "No configs to monitor"
     exit
 fi
 
-for conf_file in conf.d/*.conf; do
+for conf_file in refresh/conf.d/*.conf; do
     load_portal "$conf_file"
 done
 
@@ -21,7 +21,7 @@ for key in ${!WATCH_FILES[@]}; do
     fi
 done
 
-for key in ${!PORTAL_HOMES[@]}; do
+for key in ${!CONNECTION_STRINGS[@]}; do
     BIN_HOME=${BIN_HOMES[$key]}
     refresh_portal ${NAMES[$key]}
 done
@@ -45,9 +45,8 @@ while true; do
             if [ "${WATCH_FILES[$key]}" == "$f" ]; then
                 AUTH_TOKEN="${AUTH_TOKENS[$key]}"
                 BIN_HOME="${BIN_HOMES[$key]}"
-                DB_HOME="${DB_HOMES[$key]}"
+                CONNECTION_STRING="${CONNECTION_STRINGS[$key]}"
                 NAME="${NAMES[$key]}"
-                PORTAL_HOME="${PORTAL_HOMES[$key]}"
                 WATCH_FILE="${WATCH_FILES[$key]}"
             fi
         done

@@ -6,7 +6,7 @@ Type = simple
 ExecStart = /usr/local/jars-refreshd/jars-refresh.sh start
 Restart = on-failure
 User = www-data
-WorkingDirectory = /etc/jars-refresh
+WorkingDirectory = /etc/jars
 
 [Install]
 WantedBy = multi-user.target

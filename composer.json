@@ -1,13 +1,12 @@
 {
-    "name": "oranfry\/jars-refreshd",
-    "version": "1.0.0",
-    "minimum-stability": "dev",
-    "require": {
-        "oranfry\/jars-core": "*"
-    },
     "autoload": {
         "psr-4": {
             "jars\\refresh\\": "classes"
         }
+    },
+    "minimum-stability": "dev",
+    "name": "oranfry\/jars-refreshd",
+    "require": {
+        "oranfry\/jars-core": "*"
     }
 }
