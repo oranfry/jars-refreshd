@@ -3,7 +3,7 @@
 
 $command = array_shift($argv);
 
-$etc = '/etc';
+$etc = '/etc/jars';
 
 foreach ($argv as $i => $value) {
     if (preg_match('/^--etc-dir=(.*)/', $value, $matches)) {

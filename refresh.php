@@ -7,7 +7,7 @@ const OPTIONAL = ['PORTAL_AUTOLOAD'];
 
 $command = array_shift($argv);
 
-$etc = '/etc';
+$etc = '/etc/jars';
 $etc_arg = null;
 
 foreach ($argv as $i => $value) {
