@@ -2,7 +2,7 @@
 function load_portal {
     NAME="$(basename "$(echo "$1" | sed 's/.conf$//')")"
 
-    for c in $("$dir/read-portal.php" $NAME); do export $c; done
+    for c in $("$dir/read-portal.php" $NAME); do eval $c; done
 
     source "$1"
     source "refresh/global.conf"
