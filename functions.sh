@@ -2,6 +2,8 @@
 function load_portal {
     NAME="$(basename "$(echo "$1" | sed 's/.conf$//')")"
 
+    for c in $("$dir/read-portal.php" $NAME); do export $c; done
+
     source "$1"
     source "refresh/global.conf"
 
@@ -29,7 +31,7 @@ function load_portal {
         fi
     done
 
-    WATCH_FILE="${PORTAL_AUTOLOAD##,*/}/touch.dat"
+    WATCH_FILE="$(echo $CONNECTION_STRING | sed 's/[^,]*,//')/touch.dat"
 
     touch "$WATCH_FILE"
 
