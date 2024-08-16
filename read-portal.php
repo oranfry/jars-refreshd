@@ -19,10 +19,10 @@ if (
     && $config = json_decode(file_get_contents($file))
 ) {
     if (isset($config->autoload)) {
-        echo 'PORTAL_AUTOLOAD=' . $config->autoload . "\n";
+        echo "PORTAL_AUTOLOAD='" . $config->autoload . "'\n";
     }
 
     if (isset($config->connection_string)) {
-        echo 'CONNECTION_STRING=' . $config->connection_string . "\n";
+        echo "CONNECTION_STRING='" . $config->connection_string . "'\n";
     }
 }

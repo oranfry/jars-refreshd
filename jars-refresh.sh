@@ -4,17 +4,17 @@ dir="$(dirname "$0")"
 
 function d_start
 {
-    echo  "Jars Refresh: starting service"
+    echo "Jars Refresh: starting service"
     "$dir/jars-refreshd.sh"
     echo $! > /tmp/jars-refresh.pid
-    echo  "PID: $(cat /tmp/jars-refresh.pid)"
+    echo "PID: $(cat /tmp/jars-refresh.pid)"
 }
 
 function d_stop
 {
     echo "Jars Refresh: stopping service (PID: $(cat /tmp/jars-refresh.pid))"
     kill $(cat /tmp/jars-refresh.pid)
-    rm  /tmp/jars-refresh.pid
+    rm /tmp/jars-refresh.pid
  }
 
 function d_status
@@ -32,16 +32,16 @@ case "$1" in
         ;;
     Reload )
         d_stop
-        sleep  1
+        sleep 1
         d_start
         ;;
     Status )
         d_status
         ;;
     * )
-        echo  "Usage: $ 0 {start | stop | reload | status}"
-        exit  1
+        echo "Usage: $ 0 {start | stop | reload | status}"
+        exit 1
         ;;
 esac
 
-exit  0
+exit 0
