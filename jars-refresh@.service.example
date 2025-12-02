@@ -1,0 +1,13 @@
+[Unit]
+Description = Jars Refresh daemon - %i
+
+[Service]
+Type = simple
+Environment = JARS_BIN=/var/www/%i/jars
+ExecStart = /var/www/%i/vendor/oranfry/jars-refreshd/jars-single-refreshd.sh
+Restart = on-failure
+User = www-data
+WorkingDirectory = /tmp
+
+[Install]
+WantedBy = multi-user.target
