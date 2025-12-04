@@ -2,8 +2,6 @@
 
 dir="$(dirname "$0")"
 
-source "$dir/functions.sh"
-
 WATCH_FILE=$($JARS_BIN info -e TOUCH_FILE)
 touch "$WATCH_FILE"
 
