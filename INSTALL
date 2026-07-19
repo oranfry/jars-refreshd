@@ -1,23 +1,14 @@
-To install:
+TO INSTALL
 
+Assuming:
+    - you have a jars project at /var/www/myportal
+    - working jars binary exists at /var/www/myportal/jars
+    - your project requires oranfry/jars-refreshd (composer)
+
+Run once:
 $ sudo apt install inotify-tools
-$ mkdir -p /etc/jars/refresh/conf.d
-$ vim /etc/jars/refresh/global.conf             # add these contents:
-BIN_HOME=/path/to/jars/bin
 
-$ vim /etc/jars/refresh/conf.d/myportal.conf    # add these contents:
-AUTH_TOKEN={a valid, long-lived token}
-
-Note: If you are not defining portals using /etc/jars/*.json, you must also
-      specify PORTAL_AUTOLOAD and CONNECTION_STRING in the file
-      /etc/jars/refresh/conf.d/myportal.conf.
-
-$ cd /usr/local                         # could be anywhere you like
-$ git clone jars-refresh.git
-$ cd jars-refresh
-$ sudo cp jars-refresh.service /etc/systemd/system/jars-refresh.service
-
-Now edit /etc/systemd/system/jars-refresh.service for your system (paths, user, etc.)
-
+Run for each project (myportal, ...):
+$ sudo cp /var/www/myportal/vendor/oranfry/jars-refreshd/jars-refresh@.service.example /etc/systemd/system/jars-refresh@myportal.service
 $ sudo systemctl daemon-reload
 $ sudo systemctl enable jars-refresh
