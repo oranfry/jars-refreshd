@@ -1,14 +1,13 @@
 TO INSTALL
 
 Assuming:
-    - you have a jars project at /var/www/myportal
-    - working jars binary exists at /var/www/myportal/jars
-    - your project requires oranfry/jars-refreshd (composer)
+    - you have a jars projects at /var/www/example.com, /var/www/example.net, etc.
+    - working jars binary exists at /var/www/example.com/jars etc.
+    - your projects require oranfry/jars-refreshd via composer
 
-Run once:
 $ sudo apt install inotify-tools
-
-Run for each project (myportal, ...):
-$ sudo cp /var/www/myportal/vendor/oranfry/jars-refreshd/jars-refresh@.service.example /etc/systemd/system/jars-refresh@myportal.service
+$ sudo cp jars-refresh@.service.example /etc/systemd/system
 $ sudo systemctl daemon-reload
-$ sudo systemctl enable jars-refresh
+$ sudo systemctl enable jars-refresh@
+$ sudo service jars-refresh@example.com start
+$ sudo service jars-refresh@example.net start
